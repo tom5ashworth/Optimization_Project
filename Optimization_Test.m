@@ -96,38 +96,38 @@ cNumberFilled = 1;
 rNumberFilled = 1;
 % Check Rows for filled tiles adjacent to current tile
 for index = row-1:-1:1 % Upper Rows
-    if wall(index, column, 2) == 1
+    if wall(index, column, 1) == 1
         score = score + 1;
         rNumberFilled = rNumberFilled + 1;
-    elseif wall(index, column, 2) == 0
+    elseif wall(index, column, 1) == 0
         break
     end
     
 end
 for index = row+1:5 % Lower Rows
-    if wall(index, column, 2) == 1
+    if wall(index, column, 1) == 1
         score = score + 1;
         rNumberFilled = rNumberFilled + 1;
-    elseif wall(index, column, 2) == 0
+    elseif wall(index, column, 1) == 0
         break
     end
     
 end
 % Check Columns for filled tiles adjacent to current tile
 for index = column-1:-1:1 % Left Columns
-    if wall(row, index, 2) == 1
+    if wall(row, index, 1) == 1
         score = score + 1;
         cNumberFilled = cNumberFilled + 1;
-    elseif wall(row, index, 2) == 0
+    elseif wall(row, index, 1) == 0
         break
     end
     
 end
 for index = column+1:5 % Right Colums
-    if wall(row, index, 2) == 1
+    if wall(row, index, 1) == 1
         score = score + 1;
         cNumberFilled = cNumberFilled + 1;
-    elseif wall(row, index, 2) == 0
+    elseif wall(row, index, 1) == 0
         break
     end
     
