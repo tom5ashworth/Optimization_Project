@@ -22,7 +22,7 @@ patternLines(2,4:5,2) = 2;
 %Slide some tiles.
 wall = createWall();
 floor = create_floor();
-[wall, patternLines] = slideTiles(wall, patternLines, floor);
+[wall, patternLines] = slideTiles(wall, patternLines);
 
 wall
 
@@ -48,10 +48,10 @@ wall(:,:,2) =wall(:,:,2) + 1; %add 1 to get range 1-5
 end
 
 function floor = create_floor()
-floor = zeros(1,7);
+    floor = zeros(1,7);
 end
 
-function [wall, patternLines] = slideTiles(wall, patternLines, floor)
+function [wall, patternLines] = slideTiles(wall, patternLines)
 %This function slides the tiles where rows of the patternLines were full
 
 %Look at all the rows
@@ -59,13 +59,13 @@ for row=1:5
     %See if any complete rows of the patternLines are full
     if(patternLines(row, (6-row):5,1) == 1)
         %If any complete rows full, slide them over
-        [wall, patternLines] = slideTilesColorCheck(wall,patternLines,row, floor);
+        [wall, patternLines] = slideTilesColorCheck(wall,patternLines,row);
     end
 end
 
 end
 
-function [wall, patternLines] = slideTilesColorCheck(wall, patternLines, row, floor)
+function [wall, patternLines] = slideTilesColorCheck(wall, patternLines, row)
 %Wall is the 5x5x2 board matrix where points are stored
 %PatternLines is 5x5x2 where tiles are stored during a round
 %Row is the row # of the triangle being checked.
@@ -141,23 +141,21 @@ if rNumberFilled == 5
     score = score + 2;
 end
 if sum(wall(:) == color) == 5
-    score = score + 10;
+   score = score + 10; 
 end
 % Take Points for tiles on the floor
-if row == 5
-    for index = 1:7
-        if floor(index) == 0
-            break
-        else
-            if index == 1 | index == 2
-                score = score - 1;
-            elseif index == 3 | index == 4 | index == 5
-                score = score - 2;
-            elseif index == 6 | index == 7
-                score = score - 3;
-            end
-        end
-    end
+for index = 1:7
+   if floor(index) == 0
+       break
+   else
+      if index == 1 | index == 2
+          score = score - 1;
+      elseif index == 3 | index == 4 | index == 5
+          score = score - 2;
+      elseif index == 6 | index == 7
+          score = score - 3;
+      end
+   end 
 end
 end
 
