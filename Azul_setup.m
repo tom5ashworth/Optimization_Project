@@ -2,21 +2,25 @@ clear;
 close all;
 clc;
 
-% Index places (columns) are red, yellow, blue, white, black respectively
+% Intiate Factories with random tiles; index places (columns) are
+% red, yellow, blue, white, black respectively
+factories = zeros(5,5);
+tiles = round(0.5+rand(1,20)*4.99);
+k = 1;
 
-%Intiate Factories and supply tiles
-factories = [[1 0 2 1 0]
-    [0 1 1 1 1]
-    [2 0 2 0 0]
-    [0 3 0 0 1]
-    [0 1 0 1 2]];
+for i = 1:5
+    for j = 1:4
+        factories(i,tiles(k)) =  factories(i,tiles(k))+1;
+        k = k+1;
+    end
+end
 
 % Initiate center
 center = zeros(1,5);
 
-% 1st number in selection array corresponds to factory number (1-5 refer to
-% a factory and 6 refers to the center) and 2nd number corresponds to a
-% tile color
+% 1st number in selection corresponds to factory number (1-5 refer to
+% a factory and 6 refers to the center)
+% 2nd number corresponds to a tile color
 selection = [1 4];
 
 [factories, center] = factory_update(selection, factories, center);
